@@ -1,2 +1,2 @@
-# diary.difres.ru
- React web-application
+## Diary Application
+[Open the application](https://diary.difres.ru)

@@ -1,0 +1,15 @@
+{
+  "short_name": "Дневник",
+  "name": "Дневник",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "theme_color": "#2196f3",
+  "background_color": "#eeeeee"
+}
