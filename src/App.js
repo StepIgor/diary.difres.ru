@@ -1,6 +1,7 @@
 import Header from "./Header";
 import SubjectMenu from "./SubjectMenu";
 import {useState} from "react";
+import SubjectContent from "./SubjectContent";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <div className="container">
             <Header/>
             <SubjectMenu selectedSubject={selectedSubject} editSelectedSubject={editSelectedSubject} />
+            <SubjectContent subject={selectedSubject}/>
         </div>
     );
 }
