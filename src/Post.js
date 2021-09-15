@@ -1,6 +1,10 @@
 import "./Post.css"
+import {useState} from "react";
 
 function Post(props){
+
+    const [postText, editPostText] = useState(props.post[3])
+    const [editMode, switchEditMode] = useState(false)
 
     let postDate = new Date(props.post[1])
 
@@ -25,7 +29,13 @@ function Post(props){
     }
 
     function editPost(){
-
+        if (editMode){
+            let extraction = JSON.parse(localStorage['posts'])
+            extraction[props.id][3] = postText
+            localStorage['posts'] = JSON.stringify(extraction)
+            props.updater(props.tick + 1)
+        }
+        switchEditMode(!editMode)
     }
 
     function markAsDone(){
@@ -39,8 +49,9 @@ function Post(props){
         <li className={`collection-item black-text ${props.post[2].toString() == "true" ? 'grey lighten-2' : ''}`}>
             <div className={`post-container`}>
                 <div className={`post-text ${props.post[2].toString() == "false" ? 'black-text' : 'grey-text'} left-align`}>
-                    {postStatus}
-                    {props.post[3]}
+                    {editMode && <textarea onChange={(e)=>{editPostText(e.target.value)}} defaultValue={postText}></textarea>}
+                    {!editMode && postStatus}
+                    {!editMode && props.post[3]}
                 </div>
                 <div className={`post-actions grey-text`}>
                     <div className={`post-date`}>
@@ -48,7 +59,7 @@ function Post(props){
                     </div>
                     <div className={`post-btns right-align`}>
                         <span onClick={markAsDone} className={`blue-text`}>{props.post[2].toString() == 'true' ? 'Снять метку' : 'Отметить'}</span>
-                        <span className={`blue-text`}>Редактировать</span>
+                        <span onClick={editPost} className={`blue-text`}>Редактировать</span>
                         <span onClick={removePost} className={`red-text`}>Удалить</span>
                     </div>
                 </div>
