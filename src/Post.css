@@ -35,4 +35,5 @@
 
 textarea {
     resize: vertical;
+    height: 30vh;
 }

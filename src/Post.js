@@ -1,5 +1,5 @@
 import "./Post.css"
-import {useState} from "react";
+import {createRef, useRef, useState} from "react";
 
 function Post(props){
 
