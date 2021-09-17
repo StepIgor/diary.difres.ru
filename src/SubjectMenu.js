@@ -1,11 +1,15 @@
 import "./SubjectMenu.css"
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Slide from "react-reveal/Slide";
 import AddSubjectModal from "./AddSubjectModal";
+import ContextMenu from "./ContextMenu";
 
 function SubjectMenu(props) {
 
     const [modalVisible, setModalVisible] = useState(false)
+    const [contextMenuOpened, editContextMenuOpened] = useState(false)
+    const [contextMenuSelectedSubject, editContextMenuSelectedSubject] = useState(-1)
+
     let subjects = JSON.parse(localStorage['subjects'])
     let renderedSubjects
 
@@ -13,25 +17,36 @@ function SubjectMenu(props) {
         setModalVisible(true)
     }
 
-    function selectSubject(s){
+    function selectSubject(s) {
         props.editSelectedSubject(s)
     }
 
     renderedSubjects = subjects.map((s, i) => {
-        return (
-            <Slide right key={s.toString()}>
-                <div className="card grey lighten-5 blue-text hoverable valign-wrapper" onClick={()=>{selectSubject(i)}}>
-                    <div className={`card-content center-align truncate ${props.selectedSubject == i ? 'active' : ''}`}>
-                        {s}
+        if (s != null)
+            return (
+                <Slide right key={s.toString()}>
+                    <div className="card grey lighten-5 blue-text hoverable valign-wrapper" onContextMenu={(e) => {
+                        e.preventDefault();
+                        editContextMenuSelectedSubject(i);
+                        editContextMenuOpened(true)
+                    }} onClick={() => {
+                        selectSubject(i)
+                    }}>
+                        <div
+                            className={`card-content center-align truncate ${props.selectedSubject == i ? 'active' : ''}`}>
+                            {s}
+                        </div>
                     </div>
-                </div>
-            </Slide>
-        )
+                </Slide>
+            )
     })
 
     return (
         <div>
             <AddSubjectModal visible={modalVisible} changeVisibility={setModalVisible}/>
+            <ContextMenu opened={contextMenuOpened} editOpened={editContextMenuOpened}
+                         subject={contextMenuSelectedSubject} editSelectedSubject={props.editSelectedSubject}
+                         bandSelectedSubject={props.selectedSubject}/>
             <div className="row left-align subjects-band">
                 <Slide right>
                     <div className="card blue white-text hoverable valign-wrapper" onClick={switchModal}>
