@@ -45,11 +45,18 @@ function Post(props){
         props.updater(props.tick + 1)
     }
 
+    function enterTextareaHandling(e){
+        if (e.key == 'Enter'){
+            e.preventDefault()
+            editPost()
+        }
+    }
+
     return (
         <li className={`collection-item black-text ${props.post[2].toString() == "true" ? 'grey lighten-2' : ''}`}>
             <div className={`post-container`}>
                 <div className={`post-text ${props.post[2].toString() == "false" ? 'black-text' : 'grey-text'} left-align`}>
-                    {editMode && <textarea autoFocus onChange={(e)=>{editPostText(e.target.value)}} defaultValue={postText}></textarea>}
+                    {editMode && <textarea autoFocus onChange={(e)=>{editPostText(e.target.value)}} onKeyDown={enterTextareaHandling} defaultValue={postText}></textarea>}
                     {!editMode && postStatus}
                     {!editMode && props.post[3]}
                 </div>
