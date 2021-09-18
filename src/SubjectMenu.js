@@ -46,7 +46,7 @@ function SubjectMenu(props) {
             <AddSubjectModal visible={modalVisible} changeVisibility={setModalVisible}/>
             <ContextMenu opened={contextMenuOpened} editOpened={editContextMenuOpened}
                          subject={contextMenuSelectedSubject} editSelectedSubject={props.editSelectedSubject}
-                         bandSelectedSubject={props.selectedSubject}/>
+            />
             <div className="row left-align subjects-band">
                 <Slide right>
                     <div className="card blue white-text hoverable valign-wrapper" onClick={switchModal}>

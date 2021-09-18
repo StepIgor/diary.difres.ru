@@ -10,7 +10,7 @@ function ContextMenu(props) {
     function removeNow(e) {
         e.stopPropagation()
 
-        if (parseInt(props.subject) == parseInt(props.bandSelectedSubject)) props.editSelectedSubject(-1)
+        props.editSelectedSubject(-1)
 
         let extraction = JSON.parse(localStorage['posts'])
         extraction = extraction.filter((p) => parseInt(p[0]) != parseInt(props.subject))
