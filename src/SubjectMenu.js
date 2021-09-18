@@ -9,6 +9,7 @@ function SubjectMenu(props) {
     const [modalVisible, setModalVisible] = useState(false)
     const [contextMenuOpened, editContextMenuOpened] = useState(false)
     const [contextMenuSelectedSubject, editContextMenuSelectedSubject] = useState(-1)
+    const [contextMenuPosition, editContextMenuPosition] = useState([0, 0])
 
     let subjects = JSON.parse(localStorage['subjects'])
     let renderedSubjects
@@ -28,6 +29,7 @@ function SubjectMenu(props) {
                     <div className="card grey lighten-5 blue-text hoverable valign-wrapper" onContextMenu={(e) => {
                         e.preventDefault();
                         editContextMenuSelectedSubject(i);
+                        editContextMenuPosition([e.clientX, e.clientY])
                         editContextMenuOpened(true)
                     }} onClick={() => {
                         selectSubject(i)
@@ -46,6 +48,7 @@ function SubjectMenu(props) {
             <AddSubjectModal visible={modalVisible} changeVisibility={setModalVisible}/>
             <ContextMenu opened={contextMenuOpened} editOpened={editContextMenuOpened}
                          subject={contextMenuSelectedSubject} editSelectedSubject={props.editSelectedSubject}
+                         cursorPos={contextMenuPosition}
             />
             <div className="row left-align subjects-band">
                 <Slide right>

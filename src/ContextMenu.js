@@ -1,7 +1,13 @@
 import "./ContextMenu.css"
 import Fade from "react-reveal/Fade";
+import {createRef} from "react";
 
 function ContextMenu(props) {
+
+    let style = {
+        left: props.cursorPos[0],
+        top: props.cursorPos[1]
+    }
 
     function hideMenu() {
         props.editOpened(false)
@@ -27,7 +33,7 @@ function ContextMenu(props) {
         return (
             <Fade>
                 <div className={`menu-wrapper`} onClick={hideMenu} onContextMenu={(e) => e.preventDefault()}>
-                    <div className={`menu-container`}>
+                    <div className={`menu-container`} style={style}>
                         <ul className={`collection`}>
                             <a onClick={removeNow} className={`collection-item blue-text`}><i
                                 className={`material-icons red-text`}>delete</i> <span>Удалить предмет</span></a>

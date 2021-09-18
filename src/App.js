@@ -24,7 +24,7 @@ function App() {
     const [selectedSubject, editSelectedSubject] = useState(-1)
 
     return (
-        <div className="container">
+        <div className="container" onContextMenu={(e)=>e.preventDefault()}>
             <Header/>
             <SubjectMenu selectedSubject={selectedSubject} editSelectedSubject={editSelectedSubject} />
             <SubjectContent subject={selectedSubject}/>
