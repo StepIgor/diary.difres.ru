@@ -56,7 +56,7 @@ function Post(props){
         <li className={`collection-item black-text ${props.post[2].toString() == "true" ? 'grey lighten-2' : ''}`}>
             <div className={`post-container`}>
                 <div className={`post-text ${props.post[2].toString() == "false" ? 'black-text' : 'grey-text'} left-align`}>
-                    {editMode && <textarea autoFocus onChange={(e)=>{editPostText(e.target.value)}} onKeyDown={enterTextareaHandling} defaultValue={props.post[3]}></textarea>}
+                    {editMode && <textarea autoFocus onFocus={(e) => {editPostText(e.target.value)}} onChange={(e)=>{editPostText(e.target.value)}} onKeyDown={enterTextareaHandling} defaultValue={props.post[3]}></textarea>}
                     {!editMode && postStatus}
                     {!editMode && props.post[3]}
                 </div>
