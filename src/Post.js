@@ -3,7 +3,7 @@ import {useState} from "react";
 
 function Post(props){
 
-    const [postText, editPostText] = useState(props.post[3])
+    const [postText, editPostText] = useState('')
     const [editMode, switchEditMode] = useState(false)
 
     let postDate = new Date(props.post[1])
@@ -56,7 +56,7 @@ function Post(props){
         <li className={`collection-item black-text ${props.post[2].toString() == "true" ? 'grey lighten-2' : ''}`}>
             <div className={`post-container`}>
                 <div className={`post-text ${props.post[2].toString() == "false" ? 'black-text' : 'grey-text'} left-align`}>
-                    {editMode && <textarea autoFocus onChange={(e)=>{editPostText(e.target.value)}} onKeyDown={enterTextareaHandling} defaultValue={postText}></textarea>}
+                    {editMode && <textarea autoFocus onChange={(e)=>{editPostText(e.target.value)}} onKeyDown={enterTextareaHandling} defaultValue={props.post[3]}></textarea>}
                     {!editMode && postStatus}
                     {!editMode && props.post[3]}
                 </div>
