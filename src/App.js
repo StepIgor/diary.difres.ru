@@ -16,6 +16,8 @@ function App() {
         window.location.reload(true)
     }
 
+    if (localStorage['already_used'] != null) localStorage.clear()
+
     if (localStorage['subjects'] == null) {
         localStorage['subjects'] = JSON.stringify([])
         localStorage['posts'] = JSON.stringify([])
